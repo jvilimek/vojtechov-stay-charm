@@ -21,12 +21,22 @@ execSync(
 // 2) SSR HTML
 let html = await fetch(`${ORIGIN}/`).then((r) => r.text());
 
-// 3) Obrázky lokálně
+// 3) Obrázky lokálně – primárně z repozitáře (public/images), jinak z dev serveru
 const assetUrls = [...new Set([...html.matchAll(/\/__l5e\/[^"'\s)\\]+/g)].map((m) => m[0]))];
 for (const url of assetUrls) {
   const name = url.split("/").pop();
-  const buf = Buffer.from(await (await fetch(ORIGIN + url)).arrayBuffer());
-  await writeFile(path.join(OUT, "images", name), buf);
+  const local = path.join("public/images", name);
+  const target = path.join(OUT, "images", name);
+  if (existsSync(local)) {
+    await cp(local, target);
+  } else {
+    const res = await fetch(ORIGIN + url);
+    const buf = Buffer.from(await res.arrayBuffer());
+    if (!res.ok || buf.length < 1024) {
+      throw new Error(`Obrázek ${name} se nepodařilo získat (přidej ho do public/images/).`);
+    }
+    await writeFile(target, buf);
+  }
   html = html.replaceAll(url, `images/${name}`);
 }
 
@@ -37,6 +47,8 @@ html = html
   .replace(/ data-precedence="[^"]*"/g, "")
   .replace(/<!--\$?-->|<!--\/\$-->|<!--\$!-->/g, "")
   .replace('<html lang="en"', '<html lang="cs"')
+  .replace(/href="\/favicon\.ico"/g, 'href="favicon.ico"')
+  .replace(/(<a[^>]*)href="\/"/g, '$1href="./"')
   .replace("</head>", `<link rel="stylesheet" href="assets/styles.css"/>\n</head>`)
   .replace("</body>", `<script src="assets/gallery.js" defer></script>\n</body>`);
 
