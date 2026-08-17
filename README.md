@@ -39,3 +39,7 @@ npm run export:static  # vygeneruje /docs
 
 Ve složce `docs/` je `index.html`, `assets/styles.css`, `assets/gallery.js`, `images/` a `.nojekyll`.
 Obsah `docs/` nakopírujte do repozitáře ubytovanivojtechov.cz (GitHub Pages → Deploy from branch → /docs).
+
+Automaticky to dělá i GitHub Action `.github/workflows/deploy-pages.yml`:
+po pushi do `main` vygeneruje statický web a nasadí ho na GitHub Pages
+(v repozitáři nastavte Settings → Pages → Source: GitHub Actions).
