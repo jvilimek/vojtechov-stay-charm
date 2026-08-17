@@ -27,3 +27,15 @@ npm run dev
 - TypeScript
 - React
 - Tailwind CSS
+
+## Statický export pro GitHub Pages
+
+Hosting nepotřebuje Node.js – web se exportuje do čistého HTML/CSS/JS:
+
+```sh
+npm run dev            # v jednom terminálu (localhost:8080)
+npm run export:static  # vygeneruje /docs
+```
+
+Ve složce `docs/` je `index.html`, `assets/styles.css`, `assets/gallery.js`, `images/` a `.nojekyll`.
+Obsah `docs/` nakopírujte do repozitáře ubytovanivojtechov.cz (GitHub Pages → Deploy from branch → /docs).
