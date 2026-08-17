@@ -29,7 +29,7 @@ jobs:
 
       - name: Start dev server
         run: |
-          bun run dev > /tmp/dev-server.log 2>&1 &
+          bun run dev --port 8080 --host 127.0.0.1 --strictPort > /tmp/dev-server.log 2>&1 &
           for i in $(seq 1 60); do
             curl -sf -o /dev/null http://localhost:8080/ && exit 0
             sleep 2
@@ -38,6 +38,11 @@ jobs:
 
       - name: Export static site
         run: bun run export:static
+        env:
+          EXPORT_ORIGIN: http://127.0.0.1:8080
+
+      - name: Set custom domain (CNAME)
+        run: echo "ubytovanivojtechov.cz" > docs/CNAME
 
       - name: Stop dev server
         if: always()
