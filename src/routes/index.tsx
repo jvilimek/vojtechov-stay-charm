@@ -1,24 +1,547 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Gallery, type GalleryPhoto } from "@/components/site/Gallery";
+import bathroom from "@/assets/bathroom.jpg.asset.json";
+import bedroom1 from "@/assets/bedroom-1.jpg.asset.json";
+import bedroom2 from "@/assets/bedroom-2.jpg.asset.json";
+import bedroomFireplace from "@/assets/bedroom-fireplace.jpg.asset.json";
+import heroFarmhouse from "@/assets/hero-farmhouse.jpg.asset.json";
+import kitchen from "@/assets/kitchen.jpg.asset.json";
+import livingRoom from "@/assets/living-room.jpg.asset.json";
+import shower from "@/assets/shower.jpg.asset.json";
+import surroundings from "@/assets/surroundings.jpg.asset.json";
+
+const BOOKING_URL = "https://www.booking.com/hotel/cz/dvur-u-spranku.html";
+
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Dvůr u Špraňku — apartmán Vojtěchov u Hvozdu" },
+      {
+        name: "description",
+        content:
+          "Apartmán pro 6 osob na moravském statku ve Vojtěchově. Krb, vybavená kuchyň, terasa a zahrada, klid Drahanské vrchoviny. Rezervujte pobyt.",
+      },
+      { property: "og:title", content: "Dvůr u Špraňku — apartmán Vojtěchov u Hvozdu" },
+      {
+        property: "og:description",
+        content:
+          "Autentické ubytování v citlivě zrekonstruovaném statku na pomezí Hané a Drahanské vrchoviny.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Apartment",
+          name: "Dvůr u Špraňku",
+          description:
+            "Apartmán pro 6 osob v citlivě zrekonstruovaném statku ve Vojtěchově u Hvozdu.",
+          numberOfBedrooms: 2,
+          occupancy: { "@type": "QuantitativeValue", maxValue: 6 },
+          floorSize: { "@type": "QuantitativeValue", value: 50, unitCode: "MTK" },
+          telephone: "+420728844123",
+          email: "rezervace@ubytovanivojtechov.cz",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Vojtěchov 7",
+            postalCode: "798 55",
+            addressLocality: "Hvozd",
+            addressCountry: "CZ",
+          },
+          geo: { "@type": "GeoCoordinates", latitude: 49.65151, longitude: 16.90737 },
+        }),
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const navLinks = [
+  { href: "#apartman", label: "Apartmán" },
+  { href: "#galerie", label: "Fotogalerie" },
+  { href: "#vybaveni", label: "Vybavení" },
+  { href: "#cenik", label: "Ceník" },
+  { href: "#okoli", label: "Okolí" },
+  { href: "#kontakt", label: "Kontakt" },
+];
+
+const photos: GalleryPhoto[] = [
+  { url: livingRoom.url, alt: "Obývací pokoj s jídelnou a krbem" },
+  { url: bedroomFireplace.url, alt: "Ložnice s krbem" },
+  { url: bedroom1.url, alt: "Ložnice s manželskou postelí" },
+  { url: bedroom2.url, alt: "Druhá ložnice apartmánu" },
+  { url: kitchen.url, alt: "Plně vybavená kuchyň s jídelnou" },
+  { url: bathroom.url, alt: "Koupelna s dřevěnou skříňkou" },
+  { url: shower.url, alt: "Sprchový kout" },
+  { url: heroFarmhouse.url, alt: "Statek Dvůr u Špraňku zvenku" },
+];
+
+const amenities = [
+  {
+    title: "Celý apartmán jen pro vás",
+    text: "Dvě ložnice, obývací pokoj a koupelna, cca 50 m².",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.25 12l8.954-8.955a1.126 1.126 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75"
+      />
+    ),
+  },
+  {
+    title: "Krb na dřevo",
+    text: "Vnitřní krb pro dlouhé podzimní a zimní večery.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"
+      />
+    ),
+  },
+  {
+    title: "Vybavená kuchyň",
+    text: "Indukce, trouba, myčka, lednice s mrazákem i kávovar.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15.75 3.75v16.5m-7.5-16.5v6a3 3 0 006 0v-6M8.25 20.25h-3m13.5 0h3"
+      />
+    ),
+  },
+  {
+    title: "Parkování ve dvoře",
+    text: "Vlastní stání přímo v uzavřeném dvoře.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375A1.125 1.125 0 012.25 17.625V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.806H14.25"
+      />
+    ),
+  },
+  {
+    title: "Terasa a zahrada",
+    text: "Sluneční terasa, posezení a výhled do krajiny.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+      />
+    ),
+  },
+  {
+    title: "Gril a ohniště",
+    text: "Možnost grilování a opékání přímo ve dvoře.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 21a9 9 0 006.72-15A8.25 8.25 0 0112 21zm0 0a9 9 0 01-6.72-15A8.25 8.25 0 0012 21z"
+      />
+    ),
+  },
+  {
+    title: "Vhodné pro rodiny",
+    text: "Hrací koutek pro děti, dětská postýlka na vyžádání.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75h.008v.008H9.75V9.75zm4.5 0h.008v.008h-.008V9.75z"
+      />
+    ),
+  },
+  {
+    title: "Wi-Fi zdarma",
+    text: "Bezdrátové připojení v celém objektu.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"
+      />
+    ),
+  },
+];
+
+const pricing = [
+  { season: "Letní sezóna", term: "15. 6. – 15. 9.", week: "20 000 Kč", weekend: "6 000 Kč" },
+  { season: "Zimní sezóna", term: "1. 12. – 15. 3.", week: "20 000 Kč", weekend: "6 000 Kč" },
+  { season: "Mimo sezónu", term: "zbytek roku", week: "18 000 Kč", weekend: "5 800 Kč" },
+];
+
+const nearby = [
+  { name: "Javoříčské jeskyně", note: "Krápníkové chodby v srdci krasu", dist: "2,7 km" },
+  { name: "Hrad Bouzov", note: "Nejpohádkovější hrad na Moravě", dist: "7,5 km" },
+  { name: "Lyžařský areál Kladky", note: "Sjezdovka pro zimní pobyty", dist: "9 km" },
+  { name: "Zámek Bílá Lhota", note: "Barokní zámek s botanickou zahradou", dist: "10 km" },
+  { name: "Koupaliště Loštice", note: "Přírodní koupání v letních dnech", dist: "11 km" },
+  { name: "Muzeum olomouckých tvarůžků", note: "Chuť Hané v Lošticích", dist: "13 km" },
+];
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-oat text-forest">
+      <nav className="fixed top-0 z-50 w-full border-b border-border bg-oat/85 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-6">
+          <a
+            href="#top"
+            className="text-sm font-semibold tracking-[0.18em] uppercase whitespace-nowrap"
+          >
+            Dvůr u Špraňku
+          </a>
+          <div className="hidden gap-8 text-sm font-medium text-forest/70 lg:flex">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="transition-colors hover:text-forest">
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full bg-forest px-6 py-2 text-sm font-medium text-oat ring-1 ring-forest transition-transform hover:bg-forest/90 active:scale-95"
+          >
+            Rezervovat
+          </a>
+        </div>
+      </nav>
+
+      <header id="top" className="relative flex h-[90vh] items-end overflow-hidden pb-24">
+        <div className="absolute inset-0 z-0">
+          <img
+            src={heroFarmhouse.url}
+            alt="Statek Dvůr u Špraňku ve Vojtěchově za slunečného dne"
+            className="slow-zoom h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/30 to-forest/10" />
+        </div>
+        <div className="relative z-10 mx-auto w-full max-w-screen-xl px-6">
+          <div className="reveal max-w-[32ch]">
+            <p className="mb-6 text-xs font-medium tracking-[0.22em] text-oat/80 uppercase">
+              Vojtěchov u Hvozdu · Haná
+            </p>
+            <h1 className="mb-8 text-4xl leading-tight font-medium tracking-tight text-balance text-oat md:text-6xl">
+              Pomalý život v srdci Hané.
+            </h1>
+            <p className="mb-10 max-w-[42ch] text-lg text-pretty text-oat/90">
+              Autentické ubytování v citlivě zrekonstruovaném statku, kde se čas zastavil mezi vůní
+              dřeva a šuměním potoka Špraněk.
+            </p>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block rounded-full bg-clay px-8 py-4 text-sm font-medium text-forest transition-transform hover:brightness-105 active:scale-95"
+            >
+              Rezervovat pobyt
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <section id="apartman" className="bg-oat py-24">
+        <div className="mx-auto max-w-screen-xl px-6">
+          <div className="grid items-start gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <img
+                src={livingRoom.url}
+                alt="Obývací pokoj apartmánu s krbem a jídelním stolem"
+                loading="lazy"
+                className="aspect-[4/3] w-full rounded-xl object-cover ring-1 ring-border"
+              />
+            </div>
+            <div className="pt-4 lg:col-span-5">
+              <span className="mb-4 block text-sm font-medium tracking-[0.18em] text-clay uppercase">
+                Hlavní apartmán
+              </span>
+              <h2 className="mb-6 text-3xl font-medium tracking-tight text-balance">
+                Prostor pro společné chvíle
+              </h2>
+              <p className="mb-8 max-w-[48ch] text-base text-pretty text-forest/80">
+                Velkorysý apartmán o rozloze cca 50 m² nabízí zázemí pro rodinu i přátele. Dvě
+                ložnice s manželskou postelí, obývací pokoj s krbem a koženou pohovkou s
+                integrovanou postelí. Ložní prádlo i úklid jsou v ceně.
+              </p>
+              <ul className="mb-10 grid grid-cols-2 gap-x-8 gap-y-4">
+                {[
+                  "6 lůžek, 2 ložnice",
+                  "Krb na dřevo",
+                  "Vybavená kuchyň a jídelna",
+                  "Terasa a zahrada",
+                  "Uzavřený dvůr, parkování",
+                  "Hrací koutek pro děti",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm">
+                    <span className="h-2 w-2 shrink-0 rounded-full bg-sage" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#galerie"
+                className="inline-flex items-center gap-2 border-b border-forest/20 py-2 text-sm font-medium transition-colors hover:border-forest"
+              >
+                Prohlédnout fotogalerii
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-paper py-12">
+        <div className="mx-auto max-w-screen-xl px-6">
+          <div className="flex flex-col items-center justify-between gap-8 rounded-3xl bg-oat/60 p-8 ring-1 ring-border md:flex-row md:p-12">
+            <div className="max-w-[46ch]">
+              <h3 className="mb-2 text-xl font-medium tracking-tight">
+                Připravujeme druhý apartmán
+              </h3>
+              <p className="text-sm text-pretty text-forest/60">
+                V další části statku právě dokončujeme druhý apartmán ve stejném duchu. Brzy tak
+                budeme moci přivítat i větší společnosti a dvě rodiny současně.
+              </p>
+            </div>
+            <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-2xl bg-sage/10">
+              <span className="text-xs font-semibold tracking-[0.18em] text-sage uppercase">
+                Brzy
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="galerie" className="bg-oat py-24">
+        <div className="mx-auto max-w-screen-xl px-6">
+          <div className="mb-12">
+            <h2 className="mb-4 text-3xl font-medium tracking-tight">Fotogalerie</h2>
+            <p className="max-w-[56ch] text-pretty text-forest/60">
+              Podívejte se dovnitř — obývací pokoj s krbem, ložnice, kuchyň i koupelna.
+            </p>
+          </div>
+          <Gallery photos={photos} />
+        </div>
+      </section>
+
+      <section id="vybaveni" className="bg-oat pb-24">
+        <div className="mx-auto max-w-screen-xl px-6">
+          <div className="mb-16">
+            <h2 className="mb-4 text-3xl font-medium tracking-tight">Vše, co potřebujete</h2>
+            <p className="max-w-[56ch] text-pretty text-forest/60">
+              Vytvořili jsme zázemí, kde se snoubí historie venkova s moderním komfortem.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-px bg-forest/5 md:grid-cols-4">
+            {amenities.map((item) => (
+              <div key={item.title} className="bg-oat p-8">
+                <div className="mb-6 flex h-8 w-8 items-center justify-center rounded-lg bg-sage/10">
+                  <svg
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.8}
+                    stroke="currentColor"
+                    className="h-4 w-4 shrink-0 text-sage"
+                    aria-hidden="true"
+                  >
+                    {item.icon}
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-sm font-medium">{item.title}</h3>
+                <p className="text-xs text-forest/60">{item.text}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-8 text-xs text-forest/50">
+            Nekuřácký objekt · bez domácích mazlíčků · majitel v objektu
+          </p>
+        </div>
+      </section>
+
+      <section id="cenik" className="bg-paper py-24">
+        <div className="mx-auto max-w-screen-xl px-6">
+          <div className="mx-auto max-w-2xl">
+            <h2 className="mb-12 text-center text-2xl font-medium tracking-tight">
+              Ceník ubytování
+            </h2>
+            <div className="overflow-hidden rounded-2xl bg-oat ring-1 ring-border">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-forest/5">
+                  <tr>
+                    <th className="px-6 py-4 font-medium">Sezóna</th>
+                    <th className="px-6 py-4 font-medium">Termín</th>
+                    <th className="px-6 py-4 text-right font-medium">Týden</th>
+                    <th className="px-6 py-4 text-right font-medium">Víkend</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {pricing.map((row) => (
+                    <tr key={row.season}>
+                      <td className="px-6 py-4">{row.season}</td>
+                      <td className="px-6 py-4 text-forest/60">{row.term}</td>
+                      <td className="px-6 py-4 text-right font-medium">{row.week}</td>
+                      <td className="px-6 py-4 text-right font-medium">{row.weekend}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-6 text-center text-xs tracking-[0.15em] text-forest/40 uppercase">
+              Ceny za celý apartmán · minimální délka pobytu 2 noci
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="okoli" className="bg-oat py-24">
+        <div className="mx-auto max-w-screen-xl px-6">
+          <div className="grid gap-16 md:grid-cols-2">
+            <div>
+              <h2 className="mb-8 text-3xl font-medium tracking-tight text-balance">
+                Kam vyrazit za dobrodružstvím
+              </h2>
+              <p className="mb-12 max-w-[48ch] text-base text-pretty text-forest/70">
+                Vojtěchov leží na pomezí Drahanské vrchoviny a Hané. Okolí nabízí krasové jeskyně,
+                pohádkové hrady, houbařské lesy i nekonečné trasy pro pěší a cyklisty — les začíná
+                180 metrů od dvora.
+              </p>
+              <img
+                src={surroundings.url}
+                alt="Krajina v okolí Vojtěchova"
+                loading="lazy"
+                className="aspect-video w-full rounded-xl object-cover ring-1 ring-border"
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <ul className="divide-y divide-border">
+                {nearby.map((place) => (
+                  <li key={place.name} className="group flex items-baseline justify-between py-6">
+                    <div>
+                      <span className="block font-medium transition-colors group-hover:text-clay">
+                        {place.name}
+                      </span>
+                      <span className="text-xs text-forest/50">{place.note}</span>
+                    </div>
+                    <span className="ml-4 shrink-0 text-sm text-forest/40 tabular-nums">
+                      {place.dist}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer id="kontakt" className="bg-forest py-24 text-oat/90">
+        <div className="mx-auto max-w-screen-xl px-6">
+          <div className="grid items-start gap-16 md:grid-cols-2 md:gap-24">
+            <div>
+              <h2 className="mb-12 text-4xl font-medium tracking-tight text-oat">
+                Těšíme se na vaši návštěvu.
+              </h2>
+              <div className="space-y-8">
+                <div>
+                  <span className="mb-2 block text-xs tracking-[0.18em] text-sage uppercase">
+                    Adresa
+                  </span>
+                  <address className="text-lg not-italic">
+                    Vojtěchov 7<br />
+                    798 55 Hvozd u Prostějova
+                  </address>
+                  <a
+                    href="https://mapy.cz/zakladni?q=49.65151N%2C16.90737E"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-2 inline-block text-sm text-oat/60 underline underline-offset-4 transition-colors hover:text-oat"
+                  >
+                    GPS 49.65151N, 16.90737E
+                  </a>
+                </div>
+                <div className="grid gap-8 sm:grid-cols-2">
+                  <div>
+                    <span className="mb-2 block text-xs tracking-[0.18em] text-sage uppercase">
+                      Telefon
+                    </span>
+                    <a href="tel:+420728844123" className="transition-colors hover:text-oat">
+                      +420 728 844 123
+                    </a>
+                  </div>
+                  <div>
+                    <span className="mb-2 block text-xs tracking-[0.18em] text-sage uppercase">
+                      E-mail
+                    </span>
+                    <a
+                      href="mailto:rezervace@ubytovanivojtechov.cz"
+                      className="break-all transition-colors hover:text-oat"
+                    >
+                      rezervace@ubytovanivojtechov.cz
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-3xl bg-white/5 p-8 ring-1 ring-white/10 md:p-12">
+              <h3 className="mb-8 text-xl font-medium text-oat">Důležité informace</h3>
+              <dl className="space-y-6 text-sm">
+                <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
+                  <dt className="text-sage">Check-in</dt>
+                  <dd>14:00 – 18:00</dd>
+                </div>
+                <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
+                  <dt className="text-sage">Check-out</dt>
+                  <dd>do 11:00</dd>
+                </div>
+                <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
+                  <dt className="text-sage">Kapacita</dt>
+                  <dd>6 lůžek + 2 přistýlky</dd>
+                </div>
+                <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
+                  <dt className="text-sage">Doprava</dt>
+                  <dd className="text-right">Autem, autobus 50 m, vlak Konice 9 km</dd>
+                </div>
+              </dl>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-12 block w-full rounded-xl bg-clay py-4 text-center font-medium text-forest shadow-lg shadow-black/20 transition-colors hover:brightness-105"
+              >
+                Rezervovat přes Booking.com
+              </a>
+            </div>
+          </div>
+          <div className="mt-24 flex flex-col justify-between gap-4 border-t border-white/10 pt-8 text-xs text-oat/40 md:flex-row">
+            <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov</p>
+            <div className="flex gap-8">
+              <a
+                href="https://www.facebook.com/ubytovanivojtechov"
+                target="_blank"
+                rel="noreferrer"
+                className="transition-colors hover:text-oat"
+              >
+                Facebook
+              </a>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="transition-colors hover:text-oat"
+              >
+                Booking.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
