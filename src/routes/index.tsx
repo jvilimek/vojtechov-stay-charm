@@ -227,7 +227,7 @@ function Index() {
           </video>
           <img
             src={heroPhoto.url}
-            alt="Statek Dvůr u Špraňku ve Vojtěchově za slunečného dne"
+            alt="Statek Dvůr u Špraňku ve Vojtěchově"
             className="hero-poster slow-zoom h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/30 to-forest/10" />
@@ -238,7 +238,7 @@ function Index() {
               Vojtěchov u Hvozdu · Haná
             </p>
             <h1 className="mb-8 text-4xl leading-tight font-medium tracking-tight text-balance text-oat md:text-6xl">
-              Pomalý život v srdci Hané.
+              Klid a pohoda na bývalém statku.
             </h1>
             <p className="mb-10 max-w-[42ch] text-lg text-pretty text-oat/90">
               Autentické ubytování v citlivě zrekonstruovaném statku, kde se čas zastavil mezi vůní
@@ -510,7 +510,7 @@ function Index() {
               <dl className="space-y-6 text-sm">
                 <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
                   <dt className="text-sage">Check-in</dt>
-                  <dd>14:00 – 18:00</dd>
+                  <dd>15:00 - 20:00</dd>
                 </div>
                 <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
                   <dt className="text-sage">Check-out</dt>
@@ -518,7 +518,7 @@ function Index() {
                 </div>
                 <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
                   <dt className="text-sage">Kapacita</dt>
-                  <dd>6 lůžek + 2 přistýlky</dd>
+                  <dd>2x dvoulůžko (160x200) 1x rozkládací gauč (150x200)</dd>
                 </div>
                 <div className="flex justify-between gap-6 border-b border-white/10 pb-4">
                   <dt className="text-sage">Doprava</dt>
