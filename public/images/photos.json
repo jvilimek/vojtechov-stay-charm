@@ -6,7 +6,7 @@
   { "file": "kitchen.jpg", "alt": "Plně vybavená kuchyň s jídelnou" },
   { "file": "bathroom.jpg", "alt": "Koupelna s dřevěnou skříňkou" },
   { "file": "shower.jpg", "alt": "Sprchový kout" },
-  { "file": "hero-farmhouse.jpg", "alt": "Statek Dvůr u Špraňku zvenku", "role": "hero" },
+  { "file": "hero.jpg", "alt": "Úvodní obrázek", "role": "hero" },
   {
     "file": "surroundings.jpg",
     "alt": "Krajina Drahanské vrchoviny v okolí statku",
