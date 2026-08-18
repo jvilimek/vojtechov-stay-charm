@@ -93,7 +93,7 @@ const amenities = [
   },
   {
     title: "Vybavená kuchyň",
-    text: "Indukce, trouba, myčka, lednice s mrazákem i kávovar.",
+    text: "Indukce, mikrovlná trouba, myčka, lednice s mrazákem i kávovar.",
     icon: (
       <path
         strokeLinecap="round"
@@ -103,29 +103,7 @@ const amenities = [
     ),
   },
   {
-    title: "Parkování ve dvoře",
-    text: "Vlastní stání přímo v uzavřeném dvoře.",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375A1.125 1.125 0 012.25 17.625V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.806H14.25"
-      />
-    ),
-  },
-  {
-    title: "Terasa a zahrada",
-    text: "Sluneční terasa, posezení a výhled do krajiny.",
-    icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-      />
-    ),
-  },
-  {
-    title: "Gril a ohniště",
+    title: "Grilování",
     text: "Možnost grilování a opékání přímo ve dvoře.",
     icon: (
       <path
@@ -154,6 +132,17 @@ const amenities = [
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"
+      />
+    ),
+  },
+  {
+    title: "Sauna",
+    text: "Po domluvě možný pronájem sudové sauny.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
       />
     ),
   },
