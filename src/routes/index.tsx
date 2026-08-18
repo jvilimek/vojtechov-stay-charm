@@ -2,14 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { Gallery } from "@/components/site/Gallery";
 import { galleryPhotos, photoByRole } from "@/lib/photos";
-import bedroom1 from "@/assets/bedroom-1.jpg.asset.json";
-import bedroom2 from "@/assets/bedroom-2.jpg.asset.json";
-import bedroomFireplace from "@/assets/bedroom-fireplace.jpg.asset.json";
-import heroFarmhouse from "@/assets/hero-farmhouse.jpg.asset.json";
-import kitchen from "@/assets/kitchen.jpg.asset.json";
-import livingRoom from "@/assets/living-room.jpg.asset.json";
-import shower from "@/assets/shower.jpg.asset.json";
-import surroundings from "@/assets/surroundings.jpg.asset.json";
 
 const BOOKING_URL = "https://www.booking.com/hotel/cz/dvur-u-spranku.html";
 
