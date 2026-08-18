@@ -159,7 +159,21 @@ const amenities = [
   },
 ];
 
+const sleepHighlights = [
+  { title: "Absolutní ticho", text: "Tlusté kamenné zdi a klidná náves bez dopravy." },
+  {
+    title: "Zdravě tvrdé matrace",
+    text: "Pečlivě vybrané matrace s dokonalou oporou pro unavené tělo.",
+  },
+  {
+    title: "Spánek do pozdního rána",
+    text: "Žádné budíčky ani spěch — vstáváte, až se sami probudíte.",
+  },
+  { title: "Temno a čerstvý vzduch", text: "Zatemnění v ložnicích a vzduch z okolních lesů." },
+];
+
 const pricing = [
+
   { season: "Letní sezóna", term: "15. 6. – 15. 9.", week: "20 000 Kč", weekend: "6 000 Kč" },
   { season: "Zimní sezóna", term: "1. 12. – 15. 3.", week: "20 000 Kč", weekend: "6 000 Kč" },
   { season: "Mimo sezónu", term: "zbytek roku", week: "18 000 Kč", weekend: "5 800 Kč" },
@@ -296,6 +310,50 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <section id="spanek" className="bg-forest py-24 text-oat">
+        <div className="mx-auto max-w-screen-xl px-6">
+          <div className="grid gap-14 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <span className="mb-4 block text-sm font-medium tracking-[0.18em] text-clay uppercase">
+                Sleep retreat
+              </span>
+              <h2 className="mb-6 text-3xl font-medium tracking-tight text-balance md:text-4xl">
+                Zažijte dokonalý sleep retreat: místo, kde se konečně hluboce vyspíte
+              </h2>
+              <div className="space-y-5 text-base text-pretty text-oat/80">
+                <p>
+                  Trpíte spánkovým dluhem z rychlého městského života? Náš penzion jsme proměnili v
+                  oázu pro všechny, kdo hledají stoprocentní klid a nepřerušovaný spánek až do
+                  pozdního rána.
+                </p>
+                <p>
+                  Unikátní atmosféra starého domu s tlustými kamennými zdmi funguje jako přirozený
+                  štít proti hluku moderní doby – zažijete u nás absolutní ticho, které jinde
+                  nenajdete. V pokojích na vás čekají pečlivě vybrané, zdravě tvrdé a přitom
+                  maximálně pohodlné matrace, které unavenému tělu poskytnou dokonalou oporu.
+                </p>
+                <p>
+                  Naši hosté se shodují v jednom: takhle fantasticky a hluboce se už dlouho nikde
+                  nevyspali. Přijeďte si k nám pro ten nejlepší spánek svého života.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center lg:col-span-5">
+              <ul className="divide-y divide-oat/15">
+                {sleepHighlights.map((item) => (
+                  <li key={item.title} className="py-6">
+                    <h3 className="mb-1 text-base font-medium">{item.title}</h3>
+                    <p className="text-sm text-oat/60">{item.text}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
 
       <section className="bg-paper py-12">
         <div className="mx-auto max-w-screen-xl px-6">
