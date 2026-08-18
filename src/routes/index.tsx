@@ -9,17 +9,17 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Dvůr u Špraňku — apartmán Vojtěchov u Hvozdu" },
+      { title: "Dvůr u Špraňku, obec Vojtěchov 7, Hvozd" },
       {
         name: "description",
         content:
-          "Apartmán pro 6 osob na moravském statku ve Vojtěchově. Krb, vybavená kuchyň, terasa a zahrada, klid Drahanské vrchoviny. Rezervujte pobyt.",
+          "Apartmány v bývalém statku ve Vojtěchově. Krb, vybavená kuchyň, terasa a zahrada, klid Zábřežské vrchoviny na Hané. Rezervujte pobyt.",
       },
-      { property: "og:title", content: "Dvůr u Špraňku — apartmán Vojtěchov u Hvozdu" },
+      { property: "og:title", content: "Dvůr u Špraňku, obec Vojtěchov 7, Hvozd" },
       {
         property: "og:description",
         content:
-          "Autentické ubytování v citlivě zrekonstruovaném statku na pomezí Hané a Drahanské vrchoviny.",
+          "Autentické ubytování v citlivě zrekonstruovaném statku na pomezí přírodního parku Kladecko, v blízkosti naučné stezky Špraněk a přírodní památky Taramka. Oblast spadá pod Zábřežskou vrchovinu.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -425,7 +425,7 @@ function Index() {
                 Kam vyrazit za dobrodružstvím
               </h2>
               <p className="mb-12 max-w-[48ch] text-base text-pretty text-forest/70">
-                Vojtěchov leží na pomezí Drahanské vrchoviny a Hané. Okolí nabízí krasové jeskyně,
+                Vojtěchov leží v severní části Hané, v oblasti Zábřežské Vrchoviny. Okolí nabízí krasové jeskyně,
                 pohádkové hrady, houbařské lesy i nekonečné trasy pro pěší a cyklisty — les začíná
                 180 metrů od dvora.
               </p>
