@@ -22,7 +22,9 @@ execSync(
 let html = await fetch(`${ORIGIN}/`).then((r) => r.text());
 
 // 3) Obrázky lokálně – primárně z repozitáře (public/images), jinak z dev serveru
-const assetUrls = [...new Set([...html.matchAll(/\/__l5e\/[^"'\s)\\]+/g)].map((m) => m[0]))];
+const assetUrls = [
+  ...new Set([...html.matchAll(/\/(?:__l5e\/[^"'\s)\\]+|images\/[^"'\s)\\]+)/g)].map((m) => m[0])),
+];
 for (const url of assetUrls) {
   const name = url.split("/").pop();
   const local = path.join("public/images", name);
