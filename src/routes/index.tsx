@@ -63,10 +63,10 @@ const navLinks = [
   { href: "#spanek", label: "Sleep retreat" },
   { href: "#galerie", label: "Fotogalerie" },
   { href: "#vybaveni", label: "Vybavení" },
-  { href: "#cenik", label: "Ceník" },
   { href: "#okoli", label: "Okolí" },
   { href: "#kontakt", label: "Kontakt" },
 ];
+
 
 const amenities = [
   {
@@ -172,12 +172,6 @@ const sleepHighlights = [
   { title: "Temno a čerstvý vzduch", text: "Zatemnění v ložnicích a vzduch z okolních lesů." },
 ];
 
-const pricing = [
-
-  { season: "Letní sezóna", term: "15. 6. – 15. 9.", week: "20 000 Kč", weekend: "6 000 Kč" },
-  { season: "Zimní sezóna", term: "1. 12. – 15. 3.", week: "20 000 Kč", weekend: "6 000 Kč" },
-  { season: "Mimo sezónu", term: "zbytek roku", week: "18 000 Kč", weekend: "5 800 Kč" },
-];
 
 const nearby = [
   { name: "Javoříčské jeskyně", note: "Krápníkové chodby v srdci krasu", dist: "2,7 km" },
@@ -422,40 +416,6 @@ function Index() {
         </div>
       </section>
 
-      <section id="cenik" className="bg-paper py-24">
-        <div className="mx-auto max-w-screen-xl px-6">
-          <div className="mx-auto max-w-2xl">
-            <h2 className="mb-12 text-center text-2xl font-medium tracking-tight">
-              Ceník ubytování
-            </h2>
-            <div className="overflow-hidden rounded-2xl bg-oat ring-1 ring-border">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-forest/5">
-                  <tr>
-                    <th className="px-6 py-4 font-medium">Sezóna</th>
-                    <th className="px-6 py-4 font-medium">Termín</th>
-                    <th className="px-6 py-4 text-right font-medium">Týden</th>
-                    <th className="px-6 py-4 text-right font-medium">Víkend</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border">
-                  {pricing.map((row) => (
-                    <tr key={row.season}>
-                      <td className="px-6 py-4">{row.season}</td>
-                      <td className="px-6 py-4 text-forest/60">{row.term}</td>
-                      <td className="px-6 py-4 text-right font-medium">{row.week}</td>
-                      <td className="px-6 py-4 text-right font-medium">{row.weekend}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-6 text-center text-xs tracking-[0.15em] text-forest/40 uppercase">
-              Ceny za celý apartmán · minimální délka pobytu 2 noci
-            </p>
-          </div>
-        </div>
-      </section>
 
       <section id="okoli" className="bg-oat py-24">
         <div className="mx-auto max-w-screen-xl px-6">
