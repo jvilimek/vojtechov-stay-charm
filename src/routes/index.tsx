@@ -204,10 +204,22 @@ function Index() {
 
       <header id="top" className="relative flex h-[90vh] items-end overflow-hidden pb-24">
         <div className="absolute inset-0 z-0">
+          <video
+            className="hero-video h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={heroPhoto.url}
+            aria-label="Statek Dvůr u Špraňku ve Vojtěchově"
+          >
+            <source src="/videos/hero.mp4" type="video/mp4" />
+          </video>
           <img
             src={heroPhoto.url}
             alt="Statek Dvůr u Špraňku ve Vojtěchově za slunečného dne"
-            className="slow-zoom h-full w-full object-cover"
+            className="hero-poster slow-zoom h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-forest/30 to-forest/10" />
         </div>

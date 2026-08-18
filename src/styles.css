@@ -127,3 +127,26 @@
 @utility slow-zoom {
   animation: slow-zoom 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+/* Hero video / poster visibility
+ * - desktop + motion allowed: show video, hide poster
+ * - mobile or reduced motion: show poster, hide video
+ */
+.hero-video {
+  display: none;
+}
+
+.hero-poster {
+  display: block;
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .hero-video {
+    display: block;
+  }
+
+  .hero-poster {
+    display: none;
+  }
+}
+

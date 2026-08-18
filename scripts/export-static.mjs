@@ -10,6 +10,7 @@ const OUT = path.resolve("docs");
 
 await rm(OUT, { recursive: true, force: true });
 await mkdir(path.join(OUT, "images"), { recursive: true });
+await mkdir(path.join(OUT, "videos"), { recursive: true });
 await mkdir(path.join(OUT, "assets"), { recursive: true });
 
 // 1) Tailwind CSS build (produkční, bez node.js na hostingu)
@@ -21,25 +22,29 @@ execSync(
 // 2) SSR HTML
 let html = await fetch(`${ORIGIN}/`).then((r) => r.text());
 
-// 3) Obrázky lokálně – primárně z repozitáře (public/images), jinak z dev serveru
+// 3) Lokální assety – obrázky a videa primárně z repozitáře (public/), jinak z dev serveru
 const assetUrls = [
-  ...new Set([...html.matchAll(/\/(?:__l5e\/[^"'\s)\\]+|images\/[^"'\s)\\]+)/g)].map((m) => m[0])),
+  ...new Set(
+    [...html.matchAll(/\/(?:__l5e\/[^"'\s)\\]+|images\/[^"'\s)\\]+|videos\/[^"'\s)\\]+)/g)].map(
+      (m) => m[0],
+    ),
+  ),
 ];
 for (const url of assetUrls) {
   const name = url.split("/").pop();
-  const local = path.join("public/images", name);
-  const target = path.join(OUT, "images", name);
+  const local = path.join("public", url);
+  const target = path.join(OUT, url.replace(/^\//, ""));
   if (existsSync(local)) {
     await cp(local, target);
   } else {
     const res = await fetch(ORIGIN + url);
     const buf = Buffer.from(await res.arrayBuffer());
     if (!res.ok || buf.length < 1024) {
-      throw new Error(`Obrázek ${name} se nepodařilo získat (přidej ho do public/images/).`);
+      throw new Error(`Asset ${name} se nepodařilo získat (přidej ho do public/images/ nebo public/videos/).`);
     }
     await writeFile(target, buf);
   }
-  html = html.replaceAll(url, `images/${name}`);
+  html = html.replaceAll(url, url.replace(/^\//, ""));
 }
 
 // 4) Odstranit dev/SSR runtime a nahradit styly
