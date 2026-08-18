@@ -178,8 +178,13 @@ function Index() {
         <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-6">
           <a
             href="#top"
-            className="text-sm font-semibold tracking-[0.18em] uppercase whitespace-nowrap"
+            className="flex items-center gap-3 text-sm font-semibold tracking-[0.18em] uppercase whitespace-nowrap"
           >
+            <img
+              src="/images/logo.png"
+              alt="Logo Dvůr u Špraňku"
+              className="h-9 w-auto shrink-0"
+            />
             Dvůr u Špraňku
           </a>
           <div className="hidden gap-8 text-sm font-medium text-forest/70 lg:flex">
