@@ -60,6 +60,7 @@ const surroundingsPhoto = photoByRole("surroundings");
 
 const navLinks = [
   { href: "#apartman", label: "Apartmán" },
+  { href: "#spanek", label: "Sleep retreat" },
   { href: "#galerie", label: "Fotogalerie" },
   { href: "#vybaveni", label: "Vybavení" },
   { href: "#cenik", label: "Ceník" },
