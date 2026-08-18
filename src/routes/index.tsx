@@ -1,15 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Gallery, type GalleryPhoto } from "@/components/site/Gallery";
-import bathroom from "@/assets/bathroom.jpg.asset.json";
-import bedroom1 from "@/assets/bedroom-1.jpg.asset.json";
-import bedroom2 from "@/assets/bedroom-2.jpg.asset.json";
-import bedroomFireplace from "@/assets/bedroom-fireplace.jpg.asset.json";
-import heroFarmhouse from "@/assets/hero-farmhouse.jpg.asset.json";
-import kitchen from "@/assets/kitchen.jpg.asset.json";
-import livingRoom from "@/assets/living-room.jpg.asset.json";
-import shower from "@/assets/shower.jpg.asset.json";
-import surroundings from "@/assets/surroundings.jpg.asset.json";
+import { Gallery } from "@/components/site/Gallery";
+import { galleryPhotos, photoByRole } from "@/lib/photos";
 
 const BOOKING_URL = "https://www.booking.com/hotel/cz/dvur-u-spranku.html";
 
@@ -62,6 +54,10 @@ export const Route = createFileRoute("/")({
   }),
 });
 
+const heroPhoto = photoByRole("hero");
+const livingPhoto = photoByRole("living");
+const surroundingsPhoto = photoByRole("surroundings");
+
 const navLinks = [
   { href: "#apartman", label: "Apartmán" },
   { href: "#galerie", label: "Fotogalerie" },
@@ -69,17 +65,6 @@ const navLinks = [
   { href: "#cenik", label: "Ceník" },
   { href: "#okoli", label: "Okolí" },
   { href: "#kontakt", label: "Kontakt" },
-];
-
-const photos: GalleryPhoto[] = [
-  { url: livingRoom.url, alt: "Obývací pokoj s jídelnou a krbem" },
-  { url: bedroomFireplace.url, alt: "Ložnice s krbem" },
-  { url: bedroom1.url, alt: "Ložnice s manželskou postelí" },
-  { url: bedroom2.url, alt: "Druhá ložnice apartmánu" },
-  { url: kitchen.url, alt: "Plně vybavená kuchyň s jídelnou" },
-  { url: bathroom.url, alt: "Koupelna s dřevěnou skříňkou" },
-  { url: shower.url, alt: "Sprchový kout" },
-  { url: heroFarmhouse.url, alt: "Statek Dvůr u Špraňku zvenku" },
 ];
 
 const amenities = [
@@ -220,7 +205,7 @@ function Index() {
       <header id="top" className="relative flex h-[90vh] items-end overflow-hidden pb-24">
         <div className="absolute inset-0 z-0">
           <img
-            src={heroFarmhouse.url}
+            src={heroPhoto.url}
             alt="Statek Dvůr u Špraňku ve Vojtěchově za slunečného dne"
             className="slow-zoom h-full w-full object-cover"
           />
@@ -255,7 +240,7 @@ function Index() {
           <div className="grid items-start gap-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <img
-                src={livingRoom.url}
+                src={livingPhoto.url}
                 alt="Obývací pokoj apartmánu s krbem a jídelním stolem"
                 loading="lazy"
                 className="aspect-[4/3] w-full rounded-xl object-cover ring-1 ring-border"
@@ -328,7 +313,7 @@ function Index() {
               Podívejte se dovnitř — obývací pokoj s krbem, ložnice, kuchyň i koupelna.
             </p>
           </div>
-          <Gallery photos={photos} />
+          <Gallery photos={galleryPhotos} />
         </div>
       </section>
 
@@ -414,7 +399,7 @@ function Index() {
                 180 metrů od dvora.
               </p>
               <img
-                src={surroundings.url}
+                src={surroundingsPhoto.url}
                 alt="Krajina v okolí Vojtěchova"
                 loading="lazy"
                 className="aspect-video w-full rounded-xl object-cover ring-1 ring-border"
