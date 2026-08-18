@@ -54,7 +54,7 @@ html = html
   .replace(/ data-precedence="[^"]*"/g, "")
   .replace(/<!--\$?-->|<!--\/\$-->|<!--\$!-->/g, "")
   .replace('<html lang="en"', '<html lang="cs"')
-  .replace(/href="\/favicon\.ico"/g, 'href="favicon.ico"')
+  .replace(/href="\/favicon\.(ico|png)"/g, 'href="favicon.$1"')
   .replace(/(<a[^>]*)href="\/"/g, '$1href="./"')
   .replace("</head>", `<link rel="stylesheet" href="assets/styles.css"/>\n</head>`)
   .replace("</body>", `<script src="assets/gallery.js" defer></script>\n</body>`);
