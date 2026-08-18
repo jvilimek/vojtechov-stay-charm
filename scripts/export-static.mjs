@@ -111,6 +111,8 @@ await writeFile(path.join(OUT, "index.html"), html);
 await writeFile(path.join(OUT, ".nojekyll"), "");
 await writeFile(path.join(OUT, "404.html"), html);
 if (existsSync("public/robots.txt")) await cp("public/robots.txt", path.join(OUT, "robots.txt"));
-if (existsSync("public/favicon.ico")) await cp("public/favicon.ico", path.join(OUT, "favicon.ico"));
+for (const icon of ["favicon.ico", "favicon.png"]) {
+  if (existsSync(`public/${icon}`)) await cp(`public/${icon}`, path.join(OUT, icon));
+}
 
 console.log(`Hotovo: ${OUT} (${assetUrls.length} obrázků)`);
