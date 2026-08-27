@@ -46,14 +46,15 @@ export const Route = createFileRoute("/ukrajina")({
 
 function UkrajinaPage() {
   return (
-    <div className="relative min-h-screen bg-oat text-forest">
+    <div className="relative min-h-screen text-forest">
+      <div className="pointer-events-none fixed inset-0 bg-oat" aria-hidden="true" />
       <div
-        className="pointer-events-none fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat opacity-40"
+        className="pointer-events-none fixed inset-0 bg-cover bg-center bg-no-repeat opacity-60"
         style={{ backgroundImage: "url(/images/ukrajina-bg.jpg)" }}
         aria-hidden="true"
       />
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-oat/40" aria-hidden="true" />
-      <header className="border-b border-border bg-oat/85 backdrop-blur-md">
+      <div className="pointer-events-none fixed inset-0 bg-oat/35" aria-hidden="true" />
+      <header className="relative border-b border-border bg-oat/85 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-6">
           <Link
             to="/"
