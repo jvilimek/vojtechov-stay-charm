@@ -49,7 +49,7 @@ function UkrajinaPage() {
     <div className="relative min-h-screen bg-oat text-forest">
       <div
         className="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-35"
-        style={{ backgroundImage: "url('/images/ukrajina-bg.jpg')" }}
+        style={{ backgroundImage: "url(/images/ukrajina-bg.jpg)" }}
         aria-hidden="true"
       />
       <div className="pointer-events-none fixed inset-0 -z-10 bg-oat/55" aria-hidden="true" />
