@@ -95,11 +95,28 @@ const amenities = [
     title: "Vybavená kuchyň",
     text: "Indukce, mikrovlná trouba, myčka, lednice s mrazákem i kávovar.",
     icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15.75 3.75v16.5m-7.5-16.5v6a3 3 0 006 0v-6M8.25 20.25h-3m13.5 0h3"
-      />
+      <>
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M5 7h14v10H5z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M5 7v10M14 7v10M5 11h14"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15.5 9h2M15.5 11h2M15.5 13h2"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M7 14h4"
+        />
+      </>
     ),
   },
   {
