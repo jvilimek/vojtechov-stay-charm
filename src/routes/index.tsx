@@ -211,12 +211,12 @@ const sleepHighlights = [
 
 
 const nearby = [
-  { name: "Javoříčské jeskyně", note: "Krápníkové chodby v srdci krasu", dist: "2,7 km" },
-  { name: "Hrad Bouzov", note: "Nejpohádkovější hrad na Moravě", dist: "7,5 km" },
-  { name: "Lyžařský areál Kladky", note: "Sjezdovka pro zimní pobyty", dist: "9 km" },
-  { name: "Zámek Bílá Lhota", note: "Barokní zámek s botanickou zahradou", dist: "10 km" },
-  { name: "Koupaliště Loštice", note: "Přírodní koupání v letních dnech", dist: "11 km" },
-  { name: "Muzeum olomouckých tvarůžků", note: "Chuť Hané v Lošticích", dist: "13 km" },
+  { name: "Javoříčské jeskyně", note: "Krápníkové chodby v srdci krasu", dist: "2,7 km", url: "https://caves.cz/cs/jeskyne/javoricske-jeskyne" },
+  { name: "Hrad Bouzov", note: "Nejpohádkovější hrad na Moravě", dist: "7,5 km", url: "https://www.hrad-bouzov.cz/" },
+  { name: "Lyžařský areál Kladky", note: "Sjezdovka pro zimní pobyty", dist: "9 km", url: "https://www.kladky.cz/" },
+  { name: "Zámek Bílá Lhota", note: "Barokní zámek s botanickou zahradou", dist: "10 km", url: "https://www.zamek-bilalhota.cz/" },
+  { name: "Koupaliště Loštice", note: "Přírodní koupání v letních dnech", dist: "11 km", url: "https://www.mu-lostice.cz/volny-cas/pro-turisty/zabava-a-poznani/koupaliste-lostice-1108cs.html" },
+  { name: "Muzeum olomouckých tvarůžků", note: "Chuť Hané v Lošticích", dist: "13 km", url: "https://www.tvaruzkovemuzeum.cz/" },
 ];
 
 function Index() {
