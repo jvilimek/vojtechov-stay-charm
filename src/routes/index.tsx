@@ -95,11 +95,28 @@ const amenities = [
     title: "Vybavená kuchyň",
     text: "Indukce, mikrovlná trouba, myčka, lednice s mrazákem i kávovar.",
     icon: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15.75 3.75v16.5m-7.5-16.5v6a3 3 0 006 0v-6M8.25 20.25h-3m13.5 0h3"
-      />
+      <>
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M5 7h14v10H5z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M5 7v10M14 7v10M5 11h14"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M15.5 9h2M15.5 11h2M15.5 13h2"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M7 14h4"
+        />
+      </>
     ),
   },
   {
@@ -529,7 +546,7 @@ function Index() {
               </a>
             </div>
           </div>
-          <div className="mt-24 space-y-8 border-t border-white/10 pt-8">
+          <div className="mt-24 border-t border-white/10 pt-8">
             <div className="flex flex-col flex-wrap items-start justify-between gap-4 md:flex-row md:items-center">
               <p className="max-w-[52ch] text-xs leading-relaxed text-oat/60">
                 <Link
@@ -566,7 +583,7 @@ function Index() {
                 </a>
               </div>
             </div>
-            <div className="flex flex-col justify-between gap-4 text-xs text-oat/40 md:flex-row border-t border-white/10">
+            <div className="mt-8 flex flex-col justify-between gap-4 border-t border-white/10 pt-8 text-xs text-oat/40 md:flex-row">
               <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov</p>
               <div className="flex gap-8">
                 <a

@@ -63,7 +63,17 @@ function UkrajinaPage() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-screen-xl px-6 py-16 md:py-24">
+      <main className="relative mx-auto max-w-screen-xl px-6 py-16 md:py-24">
+        <div
+          className="pointer-events-none absolute top-0 right-0 -z-10 opacity-[0.10] md:opacity-[0.08]"
+          aria-hidden="true"
+        >
+          <svg viewBox="0 0 1200 800" className="h-48 w-72 md:h-80 md:w-120">
+            <rect width="1200" height="400" fill="#0057B8" />
+            <rect y="400" width="1200" height="400" fill="#FFDD00" />
+          </svg>
+        </div>
+
         <Link
           to="/"
           className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-forest/70 transition-colors hover:text-forest"
