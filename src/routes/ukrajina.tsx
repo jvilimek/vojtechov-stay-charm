@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 const DONATION_LINKS = [
   {
     url: "https://eshop.proukrajinu.org/",
-    label: "E-shop pro Ukrajinu",
+    label: "Dárek pro Putina",
     desc: "Nákup potřebného materiálního vybavení pro ukrajinskou armádu a civilní sektor.",
   },
   {
@@ -13,7 +13,7 @@ const DONATION_LINKS = [
   },
   {
     url: "https://www.darujme.cz/projekt/1205934",
-    label: "Darujme.cz",
+    label: "Projekty Paměti národa",
     desc: "Cílená finanční pomoc konkrétnímu projektu na podporu Ukrajiny.",
   },
 ];
@@ -72,7 +72,7 @@ function UkrajinaPage() {
         </Link>
 
         <h1 className="mb-8 text-3xl font-medium tracking-tight text-balance md:text-5xl">
-          🇺🇦 Podporujeme Ukrajinu v jejím boji za svobodu
+          Podporujeme Ukrajinu v jejím boji za svobodu
         </h1>
 
         <div className="max-w-[66ch] space-y-6 text-base text-pretty text-forest/80">

@@ -532,7 +532,12 @@ function Index() {
           <div className="mt-24 space-y-8 border-t border-white/10 pt-8">
             <div className="flex flex-col flex-wrap items-start justify-between gap-4 md:flex-row md:items-center">
               <p className="max-w-[52ch] text-sm leading-relaxed text-oat/80">
-                
+                <Link
+                  to="/ukrajina"
+                  className="transition-colors hover:text-oat"
+                >
+                  Podporujeme Ukrajinu v jejím boji za svobodu:
+                </Link>
               </p>
               <div className="hidden flex-wrap gap-6 text-xs text-oat/60 md:flex">
                 <a
@@ -541,7 +546,7 @@ function Index() {
                   rel="noreferrer noopener"
                   className="transition-colors hover:text-oat"
                 >
-                  E-shop pro Ukrajinu
+                  Dárek pro Putina
                 </a>
                 <a
                   href="https://donio.cz/spolecne-za-svobodnou-ukrajinou"
@@ -549,7 +554,7 @@ function Index() {
                   rel="noreferrer noopener"
                   className="transition-colors hover:text-oat"
                 >
-                  Donio
+                  Svobodná Ukrajina
                 </a>
                 <a
                   href="https://www.darujme.cz/projekt/1205934"
@@ -557,15 +562,12 @@ function Index() {
                   rel="noreferrer noopener"
                   className="transition-colors hover:text-oat"
                 >
-                  Darujme.cz
+                  Projekty Paměti národa
                 </a>
               </div>
             </div>
-            <div className="flex flex-col justify-between gap-4 text-xs text-oat/40 md:flex-row">
-              <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov · <Link
-                  to="/ukrajina">
-                  Podporujeme Ukrajinu v jejím boji za svobodu
-                </Link></p>
+            <div className="flex flex-col justify-between gap-4 text-xs text-oat/40 md:flex-row border-white/10">
+              <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov</p>
               <div className="flex gap-8">
                 <a
                   href="https://www.facebook.com/ubytovanivojtechov"
