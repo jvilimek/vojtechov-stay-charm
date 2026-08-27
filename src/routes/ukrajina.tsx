@@ -54,7 +54,7 @@ function UkrajinaPage() {
         aria-hidden="true"
       />
       <div className="pointer-events-none fixed inset-0 bg-oat/35" aria-hidden="true" />
-      <header className="relative border-b border-border bg-oat/85 backdrop-blur-md">
+      <header className="relative z-10 border-b border-border bg-oat/85 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-6">
           <Link
             to="/"
@@ -70,7 +70,7 @@ function UkrajinaPage() {
         </div>
       </header>
 
-      <main className="relative mx-auto max-w-screen-xl px-6 py-16 md:py-24">
+      <main className="relative z-10 mx-auto max-w-screen-xl px-6 py-16 md:py-24">
 
 
 
@@ -122,7 +122,7 @@ function UkrajinaPage() {
         </p>
       </main>
 
-      <footer className="relative bg-forest py-12 text-oat/90">
+      <footer className="relative z-10 bg-forest py-12 text-oat/90">
         <div className="mx-auto max-w-screen-xl px-6">
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row">
             <p className="text-sm">© {new Date().getFullYear()} Dvůr u Špraňku</p>
