@@ -42,7 +42,7 @@ jobs:
           EXPORT_ORIGIN: http://127.0.0.1:8080
 
       - name: Set custom domain (CNAME)
-        run: echo "ubytovanivojtechov.cz" > docs/CNAME
+        run: cat CNAME > docs/CNAME
 
       - name: Stop dev server
         if: always()
