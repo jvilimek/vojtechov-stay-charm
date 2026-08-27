@@ -494,7 +494,7 @@ function Index() {
                       <span className="text-xs text-forest/50">{place.note}</span>
                     </div>
                     <a
-                      href={`https://www.google.com/maps/dir/?api=1&origin=49.65151,16.90737&destination=${encodeURIComponent(place.name)}`}
+                      href={`https://www.google.com/maps/dir/?api=1&origin=49.65151,16.90737&destination=${encodeURIComponent(place.name)}&travelmode=${place.mode}`}
                       target="_blank"
                       rel="noreferrer"
                       title="Zobrazit trasu v Mapách Google"
