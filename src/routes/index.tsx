@@ -211,12 +211,12 @@ const sleepHighlights = [
 
 
 const nearby = [
-  { name: "Javoříčské jeskyně", note: "Krápníkové chodby v srdci krasu", dist: "2,7 km" },
-  { name: "Hrad Bouzov", note: "Nejpohádkovější hrad na Moravě", dist: "7,5 km" },
-  { name: "Lyžařský areál Kladky", note: "Sjezdovka pro zimní pobyty", dist: "9 km" },
-  { name: "Zámek Bílá Lhota", note: "Barokní zámek s botanickou zahradou", dist: "10 km" },
-  { name: "Koupaliště Loštice", note: "Přírodní koupání v letních dnech", dist: "11 km" },
-  { name: "Muzeum olomouckých tvarůžků", note: "Chuť Hané v Lošticích", dist: "13 km" },
+  { name: "Javoříčské jeskyně", note: "Krápníkové chodby v srdci krasu", dist: "2,7 km", url: "https://caves.cz/cs/jeskyne/javoricske-jeskyne" },
+  { name: "Hrad Bouzov", note: "Nejpohádkovější hrad na Moravě", dist: "7,5 km", url: "https://www.hrad-bouzov.cz/" },
+  { name: "Lyžařský areál Kladky", note: "Sjezdovka pro zimní pobyty", dist: "9 km", url: "https://www.kladky.cz/" },
+  { name: "Zámek Bílá Lhota", note: "Barokní zámek s botanickou zahradou", dist: "10 km", url: "https://www.zamek-bilalhota.cz/" },
+  { name: "Koupaliště Loštice", note: "Přírodní koupání v letních dnech", dist: "11 km", url: "https://www.mu-lostice.cz/volny-cas/pro-turisty/zabava-a-poznani/koupaliste-lostice-1108cs.html" },
+  { name: "Muzeum olomouckých tvarůžků", note: "Chuť Hané v Lošticích", dist: "13 km", url: "https://www.tvaruzkovemuzeum.cz/" },
 ];
 
 function Index() {
@@ -483,14 +483,44 @@ function Index() {
                 {nearby.map((place) => (
                   <li key={place.name} className="group flex items-baseline justify-between py-6">
                     <div>
-                      <span className="block font-medium transition-colors group-hover:text-clay">
+                      <a
+                        href={place.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block font-medium underline-offset-4 transition-colors group-hover:text-clay hover:underline"
+                      >
                         {place.name}
-                      </span>
+                      </a>
                       <span className="text-xs text-forest/50">{place.note}</span>
                     </div>
-                    <span className="ml-4 shrink-0 text-sm text-forest/40 tabular-nums">
+                    <a
+                      href={`https://www.google.com/maps/dir/?api=1&origin=49.65151,16.90737&destination=${encodeURIComponent(place.name)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Zobrazit trasu v Mapách Google"
+                      className="ml-4 flex shrink-0 items-center gap-1.5 text-sm text-forest/40 tabular-nums transition-colors hover:text-clay"
+                    >
                       {place.dist}
-                    </span>
+                      <svg
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.8}
+                        stroke="currentColor"
+                        className="h-3.5 w-3.5"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+                        />
+                      </svg>
+                    </a>
                   </li>
                 ))}
               </ul>
