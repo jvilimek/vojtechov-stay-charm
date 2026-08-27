@@ -46,7 +46,13 @@ export const Route = createFileRoute("/ukrajina")({
 
 function UkrajinaPage() {
   return (
-    <div className="min-h-screen bg-oat text-forest">
+    <div className="relative min-h-screen bg-oat text-forest">
+      <div
+        className="pointer-events-none fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-35"
+        style={{ backgroundImage: "url(/images/ukrajina-bg.jpg)" }}
+        aria-hidden="true"
+      />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-oat/55" aria-hidden="true" />
       <header className="border-b border-border bg-oat/85 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-6">
           <Link
@@ -64,15 +70,8 @@ function UkrajinaPage() {
       </header>
 
       <main className="relative mx-auto max-w-screen-xl px-6 py-16 md:py-24">
-        <div
-          className="pointer-events-none absolute top-0 right-0 -z-10 opacity-[0.10] md:opacity-[0.08]"
-          aria-hidden="true"
-        >
-          <svg viewBox="0 0 1200 800" className="h-48 w-72 md:h-80 md:w-120">
-            <rect width="1200" height="400" fill="#0057B8" />
-            <rect y="400" width="1200" height="400" fill="#FFDD00" />
-          </svg>
-        </div>
+
+
 
         <Link
           to="/"
