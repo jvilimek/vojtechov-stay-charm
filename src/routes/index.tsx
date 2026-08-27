@@ -211,12 +211,12 @@ const sleepHighlights = [
 
 
 const nearby = [
-  { name: "Javoříčské jeskyně", note: "Krápníkové chodby v srdci krasu", dist: "2,7 km", url: "https://caves.cz/cs/jeskyne/javoricske-jeskyne" },
-  { name: "Hrad Bouzov", note: "Nejpohádkovější hrad na Moravě", dist: "7,5 km", url: "https://www.hrad-bouzov.cz/" },
-  { name: "Lyžařský areál Kladky", note: "Sjezdovka pro zimní pobyty", dist: "9 km", url: "https://www.kladky.cz/" },
-  { name: "Zámek Bílá Lhota", note: "Barokní zámek s botanickou zahradou", dist: "10 km", url: "https://www.zamek-bilalhota.cz/" },
-  { name: "Koupaliště Loštice", note: "Přírodní koupání v letních dnech", dist: "11 km", url: "https://www.mu-lostice.cz/volny-cas/pro-turisty/zabava-a-poznani/koupaliste-lostice-1108cs.html" },
-  { name: "Muzeum olomouckých tvarůžků", note: "Chuť Hané v Lošticích", dist: "13 km", url: "https://www.tvaruzkovemuzeum.cz/" },
+  { name: "Javoříčské jeskyně", note: "Krápníkové chodby v srdci krasu", dist: "2,7 km", url: "https://caves.cz/cs/jeskyne/javoricske-jeskyne", mode: "walking" },
+  { name: "Hrad Bouzov", note: "Nejpohádkovější hrad na Moravě", dist: "7,5 km", url: "https://www.hrad-bouzov.cz/", mode: "walking" },
+  { name: "Lyžařský areál Kladky", note: "Sjezdovka pro zimní pobyty", dist: "9 km", url: "https://www.kladky.cz/", mode: "driving" },
+  { name: "Zámek Bílá Lhota", note: "Barokní zámek s botanickou zahradou", dist: "14 km", url: "https://www.zamek-bilalhota.cz/", mode: "driving" },
+  { name: "Přírodní biotop Laškov", note: "Přírodní koupání v letních dnech", dist: "14 km", url: "https://maps.app.goo.gl/BNcgvzFGJvdjF1VG6", mode: "driving" },
+  { name: "Muzeum olomouckých tvarůžků", note: "Chuť Hané v Lošticích", dist: "20 km", url: "https://www.tvaruzkovemuzeum.cz/", mode: "driving" },
 ];
 
 function Index() {
