@@ -532,12 +532,7 @@ function Index() {
           <div className="mt-24 space-y-8 border-t border-white/10 pt-8">
             <div className="flex flex-col flex-wrap items-start justify-between gap-4 md:flex-row md:items-center">
               <p className="max-w-[52ch] text-sm leading-relaxed text-oat/80">
-                <Link
-                  to="/ukrajina"
-                  className="underline underline-offset-4 transition-colors hover:text-oat"
-                >
-                  🇺🇦 Podporujeme Ukrajinu v jejím boji za svobodu
-                </Link>
+                
               </p>
               <div className="hidden flex-wrap gap-6 text-xs text-oat/60 md:flex">
                 <a
@@ -567,7 +562,10 @@ function Index() {
               </div>
             </div>
             <div className="flex flex-col justify-between gap-4 text-xs text-oat/40 md:flex-row">
-              <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov</p>
+              <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov · <Link
+                  to="/ukrajina">
+                  Podporujeme Ukrajinu v jejím boji za svobodu
+                </Link></p>
               <div className="flex gap-8">
                 <a
                   href="https://www.facebook.com/ubytovanivojtechov"
