@@ -22,7 +22,7 @@ export const Route = createFileRoute("/ukrajina")({
   component: UkrajinaPage,
   head: () => ({
     meta: [
-      { title: "🇺🇦 Podporujeme Ukrajinu v jejím boji za svobodu — Dvůr u Špraňku" },
+      { title: "Podporujeme Ukrajinu v jejím boji za svobodu — Dvůr u Špraňku" },
       {
         name: "description",
         content:
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/ukrajina")({
       },
       {
         property: "og:title",
-        content: "🇺🇦 Podporujeme Ukrajinu v jejím boji za svobodu — Dvůr u Špraňku",
+        content: "Podporujeme Ukrajinu v jejím boji za svobodu — Dvůr u Špraňku",
       },
       {
         property: "og:description",
@@ -78,7 +78,7 @@ function UkrajinaPage() {
         <div className="max-w-[66ch] space-y-6 text-base text-pretty text-forest/80">
           <p className="text-lg">
             Jako provozovatelé ubytování Dvůr u Špraňku jednoznačně odsuzujeme ruskou vojenskou
-            agresi na Ukrajině, která od roku 2022 přináší utrpení ukrajinskému národu. Na straně
+            agresi na Ukrajině, která přináší utrpení ukrajinskému národu. Na straně
             pravdy a lidské důstojnosti stojí ukrajinský lid, který brání svou vlast, svobodu a
             mírovou budoucnost.
           </p>
@@ -108,7 +108,7 @@ function UkrajinaPage() {
         </div>
 
         <p className="mt-12 max-w-[66ch] text-sm text-forest/60">
-          Děkujeme, že stojíte na straně svobody. Sláva Ukrajině.
+          Děkujeme, že stojíte na straně svobody. Слава Україні! Героям слава!
         </p>
       </main>
 
