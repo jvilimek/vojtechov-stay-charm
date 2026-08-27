@@ -529,7 +529,7 @@ function Index() {
               </a>
             </div>
           </div>
-          <div className="mt-24 space-y-8 border-t border-white/10 pt-8">
+          <div className="mt-24 border-t border-white/10 pt-8">
             <div className="flex flex-col flex-wrap items-start justify-between gap-4 md:flex-row md:items-center">
               <p className="max-w-[52ch] text-xs leading-relaxed text-oat/60">
                 <Link
