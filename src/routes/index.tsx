@@ -566,7 +566,7 @@ function Index() {
                 </a>
               </div>
             </div>
-            <div className="flex flex-col justify-between gap-4 text-xs text-oat/40 md:flex-row border-t border-white/10">
+            <div className="mt-8 flex flex-col justify-between gap-4 border-t border-white/10 pt-8 text-xs text-oat/40 md:flex-row">
               <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov</p>
               <div className="flex gap-8">
                 <a
