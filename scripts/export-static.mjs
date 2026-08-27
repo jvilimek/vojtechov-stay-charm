@@ -54,7 +54,7 @@ html = html
   .replace(/ data-precedence="[^"]*"/g, "")
   .replace(/<!--\$?-->|<!--\/\$-->|<!--\$!-->/g, "")
   .replace('<html lang="en"', '<html lang="cs"')
-  .replace(/href="\/favicon\.(ico|png)"/g, 'href="favicon.$1"')
+  .replace(/href="\/favicon\.(ico|png|svg)"/g, 'href="favicon.$1"')
   .replace(/(<a[^>]*)href="\/"/g, '$1href="./"')
   .replace("</head>", `<link rel="stylesheet" href="assets/styles.css"/>\n</head>`)
   .replace("</body>", `<script src="assets/gallery.js" defer></script>\n</body>`);
@@ -111,7 +111,7 @@ await writeFile(path.join(OUT, "index.html"), html);
 await writeFile(path.join(OUT, ".nojekyll"), "");
 await writeFile(path.join(OUT, "404.html"), html);
 if (existsSync("public/robots.txt")) await cp("public/robots.txt", path.join(OUT, "robots.txt"));
-for (const icon of ["favicon.ico", "favicon.png"]) {
+for (const icon of ["favicon.svg"]) {
   if (existsSync(`public/${icon}`)) await cp(`public/${icon}`, path.join(OUT, icon));
 }
 
