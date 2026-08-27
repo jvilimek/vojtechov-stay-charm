@@ -19,47 +19,96 @@ execSync(
   { stdio: "inherit" },
 );
 
-// 2) SSR HTML
-let html = await fetch(`${ORIGIN}/`).then((r) => r.text());
-
-// 3) Lokální assety – obrázky a videa primárně z repozitáře (public/), jinak z dev serveru
-const assetUrls = [
-  ...new Set(
-    [...html.matchAll(/\/(?:__l5e\/[^"'\s)\\]+|images\/[^"'\s)\\]+|videos\/[^"'\s)\\]+)/g)].map(
-      (m) => m[0],
-    ),
-  ),
+const pages = [
+  { route: "/", file: "index.html", depth: 0, isFallback: true },
+  { route: "/ukrajina", file: "ukrajina/index.html", depth: 1, isFallback: false },
 ];
-for (const url of assetUrls) {
+
+const relPrefix = (depth) => (depth === 0 ? "" : "../".repeat(depth));
+const stripLeadingSlash = (url) => url.replace(/^\//, "");
+
+const copiedAssets = new Set();
+
+async function copyAsset(url) {
+  if (copiedAssets.has(url)) return;
+  copiedAssets.add(url);
   const name = url.split("/").pop();
   const local = path.join("public", url);
-  const target = path.join(OUT, url.replace(/^\//, ""));
+  const target = path.join(OUT, stripLeadingSlash(url));
+  await mkdir(path.dirname(target), { recursive: true });
   if (existsSync(local)) {
     await cp(local, target);
   } else {
     const res = await fetch(ORIGIN + url);
     const buf = Buffer.from(await res.arrayBuffer());
     if (!res.ok || buf.length < 1024) {
-      throw new Error(`Asset ${name} se nepodařilo získat (přidej ho do public/images/ nebo public/videos/).`);
+      throw new Error(
+        `Asset ${name} se nepodařilo získat (přidej ho do public/images/ nebo public/videos/).`,
+      );
     }
     await writeFile(target, buf);
   }
-  html = html.replaceAll(url, url.replace(/^\//, ""));
 }
 
-// 4) Odstranit dev/SSR runtime a nahradit styly
-html = html
-  .replace(/<script\b(?![^>]*application\/ld\+json)[\s\S]*?<\/script>/g, "")
-  .replace(/<link[^>]*(?:\/src\/styles\.css|@tanstack-start\/styles\.css|modulepreload)[^>]*>/g, "")
-  .replace(/ data-precedence="[^"]*"/g, "")
-  .replace(/<!--\$?-->|<!--\/\$-->|<!--\$!-->/g, "")
-  .replace('<html lang="en"', '<html lang="cs"')
-  .replace(/href="\/favicon\.(ico|png|svg)"/g, 'href="favicon.$1"')
-  .replace(/(<a[^>]*)href="\/"/g, '$1href="./"')
-  .replace("</head>", `<link rel="stylesheet" href="assets/styles.css"/>\n</head>`)
-  .replace("</body>", `<script src="assets/gallery.js" defer></script>\n</body>`);
+async function exportPage({ route, file, depth, isFallback }) {
+  let html = await fetch(`${ORIGIN}${route}`).then((r) => r.text());
 
-// 5) Lightbox v čistém JS (nahrazuje React chování galerie)
+  // 2) Lokální assety – obrázky a videa primárně z repozitáře (public/), jinak z dev serveru
+  const assetUrls = [
+    ...new Set(
+      [...html.matchAll(/\/(?:__l5e\/[^"'\s)\\]+|images\/[^"'\s)\\]+|videos\/[^"'\s)\\]+)/g)].map(
+        (m) => m[0],
+      ),
+    ),
+  ];
+  for (const url of assetUrls) {
+    await copyAsset(url);
+  }
+
+  // 3) Odstranit dev/SSR runtime a nahradit styly
+  html = html
+    .replace(/<script\b(?![^>]*application\/ld\+json)[\s\S]*?<\/script>/g, "")
+    .replace(/<link[^>]*(?:\/src\/styles\.css|@tanstack-start\/styles\.css|modulepreload)[^>]*>/g, "")
+    .replace(/ data-precedence="[^"]*"/g, "")
+    .replace(/<!--\$?-->|<!--\/\$-->|<!--\$!-->/g, "")
+    .replace('<html lang="en"', '<html lang="cs"')
+    .replace(/href="\/favicon\.svg"/g, `href="${relPrefix(depth)}favicon.svg"`)
+    .replace(/href="\/"/g, `href="${relPrefix(depth) || "./"}"`)
+    .replace(/href="\/ukrajina"/g, `href="${depth === 0 ? "ukrajina/" : "./"}"`);
+
+  for (const url of assetUrls) {
+    html = html.replaceAll(url, relPrefix(depth) + stripLeadingSlash(url));
+  }
+
+  html = html.replace(
+    "</head>",
+    `<link rel="stylesheet" href="${relPrefix(depth)}assets/styles.css"/>\n</head>`,
+  );
+
+  if (html.includes("data-lightbox")) {
+    html = html.replace(
+      "</body>",
+      `<script src="${relPrefix(depth)}assets/gallery.js" defer></script>\n</body>`,
+    );
+  }
+
+  const outPath = path.join(OUT, file);
+  await mkdir(path.dirname(outPath), { recursive: true });
+  await writeFile(outPath, html);
+
+  if (isFallback) {
+    await writeFile(path.join(OUT, ".nojekyll"), "");
+    await writeFile(path.join(OUT, "404.html"), html);
+    if (existsSync("public/robots.txt")) await cp("public/robots.txt", path.join(OUT, "robots.txt"));
+    if (existsSync("public/favicon.svg")) {
+      await cp("public/favicon.svg", path.join(OUT, "favicon.svg"));
+    }
+  }
+
+  return assetUrls.length;
+}
+
+// 4) Lightbox v čistém JS (nahrazuje React chování galerie)
 const gallery = `document.addEventListener("DOMContentLoaded", () => {
   const buttons = [...document.querySelectorAll("[data-lightbox] button")];
   const photos = buttons.map((b) => {
@@ -106,13 +155,11 @@ const gallery = `document.addEventListener("DOMContentLoaded", () => {
 });
 `;
 
-await writeFile(path.join(OUT, "assets/gallery.js"), gallery);
-await writeFile(path.join(OUT, "index.html"), html);
-await writeFile(path.join(OUT, ".nojekyll"), "");
-await writeFile(path.join(OUT, "404.html"), html);
-if (existsSync("public/robots.txt")) await cp("public/robots.txt", path.join(OUT, "robots.txt"));
-for (const icon of ["favicon.svg"]) {
-  if (existsSync(`public/${icon}`)) await cp(`public/${icon}`, path.join(OUT, icon));
+let totalAssets = 0;
+for (const page of pages) {
+  totalAssets += await exportPage(page);
 }
 
-console.log(`Hotovo: ${OUT} (${assetUrls.length} obrázků)`);
+await writeFile(path.join(OUT, "assets/gallery.js"), gallery);
+
+console.log(`Hotovo: ${OUT} (${totalAssets} assetů)`);

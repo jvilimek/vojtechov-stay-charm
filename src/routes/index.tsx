@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Gallery } from "@/components/site/Gallery";
 import { galleryPhotos, photoByRole } from "@/lib/photos";
@@ -529,25 +529,63 @@ function Index() {
               </a>
             </div>
           </div>
-          <div className="mt-24 flex flex-col justify-between gap-4 border-t border-white/10 pt-8 text-xs text-oat/40 md:flex-row">
-            <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov</p>
-            <div className="flex gap-8">
-              <a
-                href="https://www.facebook.com/ubytovanivojtechov"
-                target="_blank"
-                rel="noreferrer"
-                className="transition-colors hover:text-oat"
-              >
-                Facebook
-              </a>
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="transition-colors hover:text-oat"
-              >
-                Booking.com
-              </a>
+          <div className="mt-24 space-y-8 border-t border-white/10 pt-8">
+            <div className="flex flex-col flex-wrap items-start justify-between gap-4 md:flex-row md:items-center">
+              <p className="max-w-[52ch] text-sm leading-relaxed text-oat/80">
+                <Link
+                  to="/ukrajina"
+                  className="underline underline-offset-4 transition-colors hover:text-oat"
+                >
+                  🇺🇦 Podporujeme Ukrajinu v jejím boji za svobodu
+                </Link>
+              </p>
+              <div className="hidden flex-wrap gap-6 text-xs text-oat/60 md:flex">
+                <a
+                  href="https://eshop.proukrajinu.org/"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-oat"
+                >
+                  E-shop pro Ukrajinu
+                </a>
+                <a
+                  href="https://donio.cz/spolecne-za-svobodnou-ukrajinou"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-oat"
+                >
+                  Donio
+                </a>
+                <a
+                  href="https://www.darujme.cz/projekt/1205934"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="transition-colors hover:text-oat"
+                >
+                  Darujme.cz
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-col justify-between gap-4 text-xs text-oat/40 md:flex-row">
+              <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov</p>
+              <div className="flex gap-8">
+                <a
+                  href="https://www.facebook.com/ubytovanivojtechov"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition-colors hover:text-oat"
+                >
+                  Facebook
+                </a>
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition-colors hover:text-oat"
+                >
+                  Booking.com
+                </a>
+              </div>
             </div>
           </div>
         </div>
