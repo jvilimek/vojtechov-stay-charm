@@ -531,7 +531,7 @@ function Index() {
           </div>
           <div className="mt-24 space-y-8 border-t border-white/10 pt-8">
             <div className="flex flex-col flex-wrap items-start justify-between gap-4 md:flex-row md:items-center">
-              <p className="max-w-[52ch] text-sm leading-relaxed text-oat/80">
+              <p className="max-w-[52ch] text-xs leading-relaxed text-oat/60">
                 <Link
                   to="/ukrajina"
                   className="transition-colors hover:text-oat"
@@ -566,7 +566,7 @@ function Index() {
                 </a>
               </div>
             </div>
-            <div className="flex flex-col justify-between gap-4 text-xs text-oat/40 md:flex-row border-white/10">
+            <div className="flex flex-col justify-between gap-4 text-xs text-oat/40 md:flex-row border-t border-white/10">
               <p>© {new Date().getFullYear()} Dvůr u Špraňku · Ubytování Vojtěchov</p>
               <div className="flex gap-8">
                 <a
