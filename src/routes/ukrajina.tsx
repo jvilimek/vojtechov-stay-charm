@@ -122,7 +122,7 @@ function UkrajinaPage() {
         </p>
       </main>
 
-      <footer className="bg-forest py-12 text-oat/90">
+      <footer className="relative bg-forest py-12 text-oat/90">
         <div className="mx-auto max-w-screen-xl px-6">
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row">
             <p className="text-sm">© {new Date().getFullYear()} Dvůr u Špraňku</p>
