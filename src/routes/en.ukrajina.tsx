@@ -3,10 +3,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { UkrainePage } from "@/components/site/UkrainePage";
 import { SITE_ORIGIN, content } from "@/content/site";
 
-const p = content.cs.ukrainePage;
+const p = content.en.ukrainePage;
 
-export const Route = createFileRoute("/ukrajina")({
-  component: () => <UkrainePage lang="cs" />,
+export const Route = createFileRoute("/en/ukrajina")({
+  component: () => <UkrainePage lang="en" />,
   head: () => ({
     meta: [
       { title: p.metaTitle },
@@ -14,12 +14,12 @@ export const Route = createFileRoute("/ukrajina")({
       { property: "og:title", content: p.metaTitle },
       { property: "og:description", content: p.metaDescription },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: `${SITE_ORIGIN}/ukrajina` },
-      { property: "og:locale", content: "cs_CZ" },
+      { property: "og:url", content: `${SITE_ORIGIN}/en/ukrajina` },
+      { property: "og:locale", content: "en_GB" },
       { name: "twitter:card", content: "summary" },
     ],
     links: [
-      { rel: "canonical", href: `${SITE_ORIGIN}/ukrajina` },
+      { rel: "canonical", href: `${SITE_ORIGIN}/en/ukrajina` },
       { rel: "alternate", hrefLang: "cs", href: `${SITE_ORIGIN}/ukrajina` },
       { rel: "alternate", hrefLang: "en", href: `${SITE_ORIGIN}/en/ukrajina` },
     ],
